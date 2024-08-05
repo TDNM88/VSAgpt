@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot File Creator</title>
+</head>
+<body>
+    <h1>Chatbot File Creator</h1>
+    <textarea id="conversation" rows="10" cols="50" placeholder="Enter conversation here..."></textarea><br>
+    <input type="text" id="filename" placeholder="Enter filename (e.g., summary.docx)"><br>
+    <select id="file_format">
+        <option value="txt">Text File</option>
+        <option value="docx">DOCX</option>
+        <option value="pdf">PDF</option>
+    </select><br>
+    <button onclick="createFile()">Create File</button><br>
+
+    <h1>Send Email</h1>
+    <input type="text" id="subject" placeholder="Enter email subject"><br>
+    <textarea id="body" rows="5" cols="50" placeholder="Enter email body..."></textarea><br>
+    <input type="text" id="to_email" placeholder="Enter recipient's email"><br>
+    <button onclick="sendEmail()">Send Email</button><br>
+
+    <script>
+        // Thay đổi URL bên dưới thành URL của ứng dụng Flask đã deploy trên Vercel
+        const serverUrl = 'https://bigdata.ai.vn';  // Thay thế bằng URL thực tế của bạn
+
+        async function createFile() {
+            const conversation = document.getElementById('conversation').value;
+            const filename = document.getElementById('filename').value;
+            const file_format = document.getElementById('file_format').value;
+
+            const response = await fetch(`${serverUrl}/create_file`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ conversation, filename, file_format })
+            });
+            
+            const result = await response.json();
+            alert(result.message);
+        }
+
+        async function sendEmail() {
+            const subject = document.getElementById('subject').value;
+            const body = document.getElementById('body').value;
+            const to_email = document.getElementById('to_email').value;
+            const filename = document.getElementById('filename').value;
+
+ 
