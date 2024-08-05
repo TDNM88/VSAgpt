@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import openai
-import json
+import os
 from create_file import create_text_file
 from send_email import send_email
 
@@ -10,7 +10,6 @@ CORS(app)
 
 # Get the API key from environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
 
 @app.route('/create_file', methods=['POST'])
 def api_create_file():
