@@ -1,0 +1,27 @@
+{
+    "name": "send_email",
+    "description": "Send an email with the specified subject, body, and attachment to the provided email address.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string",
+          "description": "The subject of the email."
+        },
+        "body": {
+          "type": "string",
+          "description": "The body content of the email."
+        },
+        "to_email": {
+          "type": "string",
+          "description": "The recipient's email address."
+        },
+        "filename": {
+          "type": "string",
+          "description": "The file to attach to the email."
+        }
+      },
+      "required": ["subject", "body", "to_email", "filename"]
+    }
+  }
+  

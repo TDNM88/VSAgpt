@@ -1,0 +1,24 @@
+{
+    "name": "create_text_file",
+    "description": "Create a text file, DOCX, or PDF with content generated from the conversation.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "type": "string",
+          "description": "The conversation or specified content to be included in the file."
+        },
+        "filename": {
+          "type": "string",
+          "description": "The name of the output file."
+        },
+        "file_format": {
+          "type": "string",
+          "enum": ["txt", "docx", "pdf"],
+          "description": "The format of the output file ('txt', 'docx', or 'pdf')."
+        }
+      },
+      "required": ["conversation", "filename", "file_format"]
+    }
+  }
+  
