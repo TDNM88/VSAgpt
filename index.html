@@ -22,7 +22,7 @@
 
     <script>
         // Thay đổi URL bên dưới thành URL của ứng dụng Flask đã deploy trên Vercel
-        const serverUrl = 'https://bigdata.ai.vn';  // Thay thế bằng URL thực tế của bạn
+        const serverUrl = 'https://your-vercel-app-url';  // Thay thế bằng URL thực tế của bạn
 
         async function createFile() {
             const conversation = document.getElementById('conversation').value;
@@ -47,4 +47,17 @@
             const to_email = document.getElementById('to_email').value;
             const filename = document.getElementById('filename').value;
 
- 
+            const response = await fetch(`${serverUrl}/send_email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ subject, body, to_email, filename })
+            });
+            
+            const result = await response.json();
+            alert(result.message);
+        }
+    </script>
+</body>
+</html>
